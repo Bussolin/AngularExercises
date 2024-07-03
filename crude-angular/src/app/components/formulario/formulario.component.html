@@ -1,0 +1,39 @@
+    <div class="formulario-cadastro">
+        <form [formGroup]="formulario">
+
+            <!-- Nome -->
+            @if (formulario.get('nome').hasError('required') && formulario.get('nome').touched) {
+               <p class="alert alert-warning">Campo obrigatório</p>
+            }
+            @if (formulario.get('nome').hasError('minlength') && formulario.get('nome').touched) {
+                <p class="alert alert-warning">Campo precisa ter ao menos 2 caracteres</p>
+            }
+            <input type="text"   formControlName="nome"   placeholder="Nome"   class="form-control">
+
+            <!-- Idade -->
+            @if (formulario.get('idade').hasError('required') && formulario.get('idade').touched) {
+                <p class="alert alert-warning">Campo obrigatório</p>
+            }
+            @if ((formulario.get('idade').hasError('min') || formulario.get('idade').hasError('max')) && formulario.get('idade').touched) {
+                <p class="alert alert-warning">Idade inválida (0-200)</p>
+            }
+            <input type="number" formControlName="idade"  placeholder="Idade"  class="form-control">
+
+            <!-- Cidade -->
+            @if (formulario.get('cidade').hasError('required') && formulario.get('cidade').touched) {
+                <p class="alert alert-warning">Campo obrigatório</p>
+            }
+            @if (formulario.get('cidade').hasError('minlength') && formulario.get('cidade').touched) {
+                <p class="alert alert-warning">Campo precisa ter ao menos 2 caracteres</p>
+            }
+            <input type="text"   formControlName="cidade" placeholder="Cidade" class="form-control">
+            
+            @if( btnCadastrar ){
+                <button id="cadastrar" type="submit" (click)="cadastrar()" class="btn btn-primary" [disabled]="formulario.invalid">Cadastrar</button>
+            }@else {
+                <button id="alterar" type="submit" (click)="alterar()" class="btn btn-primary">Alterar</button>
+                <button id="remover" type="submit" (click)="remover()" class="btn btn-primary">Remover</button>
+                <button id="cancelar" type="submit" (click)="cadastrar()" class="btn btn-primary">Cancelar</button>
+            }
+        </form>
+    </div>

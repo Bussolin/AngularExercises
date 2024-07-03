@@ -1,0 +1,23 @@
+<hr>
+
+<div class="lista">
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+            <th>Selecionar</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of lista; index as indice">
+                <td>{{indice}}</td>
+                <td>{{p.nome}}</td>
+                <td>{{p.idade}}</td>
+                <td>{{p.cidade}}</td>
+                <td><button class="btn btn-primary" type="submit" (click)="selecionar(indice)">Selecionar</button></td>
+            </tr>
+        </tbody>
+        
+    </table>
+</div>

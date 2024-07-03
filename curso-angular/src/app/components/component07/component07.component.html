@@ -1,0 +1,5 @@
+<h1 [ngStyle]="{'color': corAtivaBool ? 'green' : 'yellow' }">cor boolean</h1>
+<h1 [ngStyle]="{'color': corAtivaString }">cor string</h1>
+<h1 [ngStyle]="{'color': getCorString() }">cor Funcao Get</h1>
+
+<li [ngStyle]="{'color': getCorStringAprovado( n[1] ) }"  *ngFor="let n of lista; index as indice"> {{indice}} - {{n}}</li>
