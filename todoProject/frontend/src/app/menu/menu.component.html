@@ -1,0 +1,18 @@
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        
+        <div><a href="https://github.com/Bussolin" class="navbar-brand">My Github</a></div>
+
+
+        <ul class="navbar-nav">
+            <li *ngIf="authenticate.isUserLoggedIn()" class="nav-link"><a [routerLink]="['/welcome/Luis']" routerLinkActive="router-link-active">Home</a></li>
+            <li *ngIf="authenticate.isUserLoggedIn()" class="nav-link"><a [routerLink]="['/todos']" routerLinkActive="router-link-active">To-Do</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-collapse justify-content-end ">
+            <li *ngIf="!authenticate.isUserLoggedIn()" class="nav-link"><a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a></li>
+            <li *ngIf="authenticate.isUserLoggedIn()" class="nav-link"><a [routerLink]="['/logout']" routerLinkActive="router-link-active">LogOut</a></li>
+        </ul>
+        
+    </nav>
+    <br>
+</header>

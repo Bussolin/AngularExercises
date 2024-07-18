@@ -1,0 +1,9 @@
+.menus{
+    display: flex;
+
+}
+
+.menus li{
+    padding: 0px;
+    padding-right: 7px;
+}
