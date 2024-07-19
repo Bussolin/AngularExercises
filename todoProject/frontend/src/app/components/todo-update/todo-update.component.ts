@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TodoDataService } from '../services/data/todo/todo-data.service';
+import { TodoDataService } from '../../services/data/todo/todo-data.service';
 import { Todo } from '../list-to-do/list-to-do.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BasicAuthService } from '../../services/basicAuth/basic-auth.service';
 
 @Component({
   selector: 'app-todo-update',
@@ -15,17 +16,20 @@ import { CommonModule } from '@angular/common';
 export class TodoUpdateComponent implements OnInit {
  
   todo : Todo = new Todo( 1, "" ,false, new Date());
+
   private activadesRoute = inject(ActivatedRoute);
+  private basicAuth = inject(BasicAuthService);
   private route = inject( Router );
   private service = inject(TodoDataService);
+
   private id : number = 0;
-  private username : string = "luis";
+  private username : string = this.basicAuth.getAuthenticatedUser();
 
   ngOnInit(): void {
     this.id = this.activadesRoute.snapshot.params['id']
     
     if( this.id != -1){
-      this.service.getTodoById("luis", this.id ).subscribe(
+      this.service.getTodoById(this.username, this.id ).subscribe(
         data => {
          this.todo = data
         }

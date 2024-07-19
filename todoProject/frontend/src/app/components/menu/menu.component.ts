@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { HardAuthenticationService } from '../services/hard-authentication.service';
+import { HardAuthenticationService } from '../../services/auth/hard-authentication.service';
 import { NgIf } from '@angular/common';
 
 @Component({

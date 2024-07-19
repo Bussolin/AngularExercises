@@ -1,7 +1,8 @@
 import { DatePipe, NgFor, NgIf, UpperCasePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { TodoDataService } from '../services/data/todo/todo-data.service';
+import { TodoDataService } from '../../services/data/todo/todo-data.service';
 import { Router } from '@angular/router';
+import { BasicAuthService } from '../../services/basicAuth/basic-auth.service';
 
 export class Todo{
   constructor(
@@ -22,33 +23,37 @@ export class Todo{
 export class ListToDoComponent implements OnInit{
 
   private service = inject(TodoDataService);
+  private basicAuth = inject(BasicAuthService);
   private route = inject(Router);
 
   todos : Todo[] = [];
   message : string = "";
+  username = this.basicAuth.getAuthenticatedUser();
 
   ngOnInit(): void {
     this.refreshTodoList();
   }
 
   deleteTodo( id : number ){
-    this.service.deleteTodo("luis",id ).subscribe(
-      error => this.handleError( error )
+    this.service.deleteTodo( this.username,id ).subscribe(
+      () => this.refreshTodoList(),
+      error => this.handleError( error ),
     )
-    this.refreshTodoList();
     this.message = "Deleted Sucessfully"
   }
 
   updateTodo( id : number) {
     this.route.navigate(['todos',id ])
+    this.refreshTodoList()
   }
 
   addTodo() {
     this.route.navigate(['todos', -1 ])
+    this.refreshTodoList()
   }
 
   refreshTodoList(){
-    this.service.getTodos("luis").subscribe(
+    this.service.getTodos(this.username ).subscribe(
       response => this.todos = response,
       error => this.handleError( error )
     )

@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { WelcomeBean, WelcomeDataService } from '../services/data/welcome/welcome-data.service';
+import { WelcomeBean, WelcomeDataService } from '../../services/data/welcome/welcome-data.service';
 import { response } from 'express';
 import { error } from 'console';
 

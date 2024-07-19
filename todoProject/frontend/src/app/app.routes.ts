@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { ErrorComponent } from './error/error.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { ListToDoComponent } from './list-to-do/list-to-do.component';
-import { LogoutComponent } from './logout/logout.component';
-import { RouteGuardService } from './services/route-guard.service';
-import { TodoUpdateComponent } from './todo-update/todo-update.component';
+import { LoginComponent } from './components/login/login.component';
+import { ErrorComponent } from './components/error/error.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { ListToDoComponent } from './components/list-to-do/list-to-do.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { RouteGuardService } from './services/auth/route-guard.service';
+import { TodoUpdateComponent } from './components/todo-update/todo-update.component';
 
 export const routes: Routes = [
     {path:'login', component:LoginComponent},
