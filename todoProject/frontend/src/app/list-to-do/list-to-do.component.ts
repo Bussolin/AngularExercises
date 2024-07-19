@@ -33,7 +33,6 @@ export class ListToDoComponent implements OnInit{
 
   deleteTodo( id : number ){
     this.service.deleteTodo("luis",id ).subscribe(
-      response => null,
       error => this.handleError( error )
     )
     this.refreshTodoList();
@@ -44,14 +43,18 @@ export class ListToDoComponent implements OnInit{
     this.route.navigate(['todos',id ])
   }
 
+  addTodo() {
+    this.route.navigate(['todos', -1 ])
+  }
+
   refreshTodoList(){
     this.service.getTodos("luis").subscribe(
       response => this.todos = response,
-      error => this.handleError(error)
+      error => this.handleError( error )
     )
   }
 
   handleError( error : any ){
-    console.log(error.error.message);
+    if( error != null) console.log(error.error.message);
   }
 }

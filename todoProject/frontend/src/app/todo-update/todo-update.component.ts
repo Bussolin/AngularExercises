@@ -14,32 +14,36 @@ import { CommonModule } from '@angular/common';
 })
 export class TodoUpdateComponent implements OnInit {
  
-  todo : Todo = new Todo( 1,'',false,new Date());
-  private route = inject(ActivatedRoute);
-  // private goBack() {this.route.navigate(['todos'])};
+  todo : Todo = new Todo( 1, "" ,false, new Date());
+  private activadesRoute = inject(ActivatedRoute);
+  private route = inject( Router );
   private service = inject(TodoDataService);
   private id : number = 0;
+  private username : string = "luis";
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id']
-    this.service.getTodoById("luis", this.id ).subscribe(
-      data => {
-       this.todo = data
-      }
-    );
+    this.id = this.activadesRoute.snapshot.params['id']
     
+    if( this.id != -1){
+      this.service.getTodoById("luis", this.id ).subscribe(
+        data => {
+         this.todo = data
+        }
+      );
+    }
   }
 
   // id : number, description : string, date : Date
   updateTodo() {
-    console.log("Updated");
-    // this.goBack();
+    if( this.id != -1){
+      this.service.updateTodo( this.username, this.id, this.todo ).subscribe();
+    }else{
+      this.service.createTodo(this.username, this.todo).subscribe();
+    }
+    this.goBack();
 
   }
 
-  cancelTransation(){
-    console.log("cancel");
-    // this.goBack();
-  }
+  goBack() {this.route.navigate(['todos'])};
 
 }

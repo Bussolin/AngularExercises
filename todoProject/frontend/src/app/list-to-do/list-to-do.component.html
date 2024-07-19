@@ -20,9 +20,10 @@
                 <td>{{todo.description}}</td>
                 <td>{{todo.done}}</td>
                 <td>{{todo.targetDate | date }}</td>
-                <td><button class="btn btn-success" (click)="updateTodo(todo.id)">Update</button></td>
+                <td><button class="btn btn-warning" (click)="updateTodo(todo.id)">Update</button></td>
                 <td><button class="btn btn-danger" (click)="deleteTodo(todo.id)">Delete</button></td>
             </tr>
         </tbody>
     </table>
+    <td><button class="btn btn-success" (click)="addTodo()">Add Todo</button></td>
 </div>
